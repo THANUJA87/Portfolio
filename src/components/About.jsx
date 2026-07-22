@@ -4,7 +4,7 @@ import SectionHeader from './ui/SectionHeader'
 
 const stats = [
   { icon: Briefcase, label: 'Current Role', value: 'Junior Software Engineer' },
-  { icon: Code2, label: 'Specialization', value: 'React · NestJS · AWS' },
+  { icon: Code2, label: 'Specialization', value: 'React · NestJS · PostgreSQL · MongoDB' },
   { icon: GraduationCap, label: 'Education', value: 'BTech · CGPA 8.27' },
 ]
 
@@ -25,6 +25,17 @@ export default function About({ profile }) {
             viewport={{ once: true, margin: '-80px' }}
             className="lg:col-span-3 space-y-5"
           >
+            <div className="flex items-center gap-4 pb-2 border-b border-white/10">
+              <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-teal-500/40 shadow-lg shadow-teal-500/10 shrink-0">
+                <img src={profile.avatar || '/thanuja.jpg'} alt={profile.name} className="w-full h-full object-cover" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-white">{profile.name}</h3>
+                <p className="text-teal-400 font-mono text-sm">{profile.title}</p>
+                <p className="text-slate-500 text-xs">{profile.location}</p>
+              </div>
+            </div>
+
             <p className="text-slate-300 text-lg leading-relaxed">{profile.summary}</p>
             <p className="text-slate-400 leading-relaxed">
               Currently working as a <strong className="text-white font-medium">Junior Software Engineer</strong> at

@@ -36,11 +36,23 @@ export default function Navbar({ profile }) {
         <a
           href="#"
           onClick={closeMenu}
-          className="font-mono text-lg font-bold text-white hover:text-teal-400 transition-colors"
+          className="flex items-center gap-3 font-mono text-lg font-bold text-white hover:text-teal-400 transition-colors group"
         >
-          <span className="text-teal-400">&lt;</span>
-          {profile.name.split(' ')[0]}
-          <span className="text-teal-400">/&gt;</span>
+          {profile.avatar && (
+            <div className="relative w-9 h-9 rounded-full overflow-hidden border border-teal-500/40 group-hover:border-teal-400 transition-all shadow-md shadow-teal-500/20">
+              <img
+                src={profile.avatar}
+                alt={profile.name}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+              />
+              <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-slate-950" />
+            </div>
+          )}
+          <span>
+            <span className="text-teal-400">&lt;</span>
+            {profile.name.split(' ')[0]}
+            <span className="text-teal-400">/&gt;</span>
+          </span>
         </a>
 
         <nav

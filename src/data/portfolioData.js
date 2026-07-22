@@ -2,21 +2,22 @@ export const portfolioData = {
   profile: {
     name: 'Thanuja M',
     title: 'Full Stack Developer',
-    tagline: 'Building production-ready web apps with React, NestJS, AWS & AI',
+    tagline: 'Building production-ready web apps with React, Node.js, NestJS, PostgreSQL, MongoDB, AWS & AI',
     email: 'thanuja.m87@gmail.com',
     phone: '+91 7736188057',
     location: 'Kollam, Kerala, India',
     linkedin: 'https://linkedin.com/in/thanuja-m-mangalan',
     github: 'https://github.com/THANUJA87',
     resumeUrl: '/Resume.pdf',
+    avatar: '/thanuja.jpg',
     availableForHire: true,
     summary:
-      'Full Stack Developer with 1+ year of experience building web applications using React.js, Node.js, NestJS, TypeScript, and PostgreSQL. Experienced in developing responsive user interfaces, designing RESTful APIs, implementing authentication and authorization, and integrating third-party services. Strong understanding of frontend and backend development with hands-on experience delivering production-ready applications. Familiar with AWS services including Lambda, S3, API Gateway, and CloudWatch.',
+      'Full Stack Developer with 1+ year of experience building web applications using React.js, Node.js, NestJS, PostgreSQL, MongoDB, TypeScript, and AWS. Experienced in developing responsive user interfaces, designing RESTful APIs, implementing authentication and authorization with JWT, and integrating third-party services. Strong understanding of frontend and backend development with hands-on experience delivering production-ready applications. Familiar with AWS services including Lambda, S3, API Gateway, and CloudWatch.',
     highlights: [
       { label: 'Experience', value: '1+ Years' },
-      { label: 'Stack', value: 'React · NestJS · AWS' },
-      { label: 'Focus', value: 'Full Stack + AI' },
-      { label: 'Status', value: 'Open to Work' },
+      { label: 'Stack', value: 'React · Node · Nest' },
+      { label: 'Databases', value: 'PostgreSQL · MongoDB' },
+      { label: 'Cloud & AI', value: 'AWS · Bedrock AI' },
     ],
   },
 

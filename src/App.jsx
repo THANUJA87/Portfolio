@@ -11,6 +11,8 @@ import Certificates from './components/Certificates'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import LoadingScreen from './components/LoadingScreen'
+import ParticlesBackground from './components/ui/ParticlesBackground'
+import CursorGlow from './components/ui/CursorGlow'
 
 function App() {
   const [data, setData] = useState(null)
@@ -27,9 +29,11 @@ function App() {
   }
 
   return (
-    <>
+    <div className="relative min-h-screen bg-surface text-slate-100 overflow-x-hidden selection:bg-teal-500 selection:text-slate-950">
+      <ParticlesBackground />
+      <CursorGlow />
       <Navbar profile={data.profile} />
-      <main>
+      <main className="relative z-10">
         <Hero profile={data.profile} />
         <About profile={data.profile} />
         <Skills skillCategories={data.skillCategories} />
@@ -40,7 +44,7 @@ function App() {
         <Contact profile={data.profile} />
       </main>
       <Footer profile={data.profile} />
-    </>
+    </div>
   )
 }
 
