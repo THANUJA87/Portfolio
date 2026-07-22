@@ -66,7 +66,8 @@ export default function About({ profile }) {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-white/10 text-white font-semibold text-sm hover:border-teal-500/50 hover:bg-teal-500/5 transition-all"
                 >
-                  View Resume
+                  <Download size={16} />
+                  Download Resume
                 </a>
               )}
             </div>

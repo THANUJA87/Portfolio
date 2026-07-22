@@ -2,11 +2,28 @@ import {
   collection,
   doc,
   getDoc,
+  getDocs,
   addDoc,
   serverTimestamp,
 } from 'firebase/firestore'
 import { db, isFirebaseConfigured } from '../firebase'
 import { portfolioData } from '../data/portfolioData'
+
+function parseSnapItems(snap, fallbackData) {
+  if (!snap || snap.empty) return fallbackData
+
+  const items = []
+  snap.docs.forEach((doc) => {
+    const data = doc.data()
+    if (Array.isArray(data.items)) {
+      items.push(...data.items)
+    } else {
+      items.push({ id: doc.id, ...data })
+    }
+  })
+
+  return items.length > 0 ? items : fallbackData
+}
 
 export async function fetchPortfolioData() {
   if (!isFirebaseConfigured() || !db) {
@@ -14,28 +31,29 @@ export async function fetchPortfolioData() {
   }
 
   try {
-    const profileSnap = await getDoc(doc(db, 'portfolio', 'profile'))
-    const skillsSnap = await getDoc(doc(db, 'portfolio', 'skillCategories'))
-    const projectsSnap = await getDoc(doc(db, 'portfolio', 'projects'))
-    const experienceSnap = await getDoc(doc(db, 'portfolio', 'experience'))
-    const educationSnap = await getDoc(doc(db, 'portfolio', 'education'))
-    const certificatesSnap = await getDoc(doc(db, 'portfolio', 'certificates'))
+    const [
+      profileSnap,
+      skillsSnap,
+      projectsSnap,
+      experienceSnap,
+      educationSnap,
+      certificatesSnap,
+    ] = await Promise.all([
+      getDoc(doc(db, 'portfolio', 'profile')),
+      getDocs(collection(db, 'skillCategories')),
+      getDocs(collection(db, 'projects')),
+      getDocs(collection(db, 'experience')),
+      getDocs(collection(db, 'education')),
+      getDocs(collection(db, 'certificates')),
+    ])
 
     return {
       profile: profileSnap.exists() ? profileSnap.data() : portfolioData.profile,
-      skillCategories: skillsSnap.exists()
-        ? skillsSnap.data().items
-        : portfolioData.skillCategories,
-      projects: projectsSnap.exists() ? projectsSnap.data().items : portfolioData.projects,
-      experience: experienceSnap.exists()
-        ? experienceSnap.data().items
-        : portfolioData.experience,
-      education: educationSnap.exists()
-        ? educationSnap.data().items
-        : portfolioData.education,
-      certificates: certificatesSnap.exists()
-        ? certificatesSnap.data().items
-        : portfolioData.certificates,
+      skillCategories: parseSnapItems(skillsSnap, portfolioData.skillCategories),
+      projects: parseSnapItems(projectsSnap, portfolioData.projects),
+      experience: parseSnapItems(experienceSnap, portfolioData.experience),
+      education: parseSnapItems(educationSnap, portfolioData.education),
+      certificates: parseSnapItems(certificatesSnap, portfolioData.certificates),
     }
   } catch (error) {
     console.warn('Firestore fetch failed, using local data:', error.message)
