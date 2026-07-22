@@ -65,7 +65,7 @@ export default function Projects({ projects }) {
               </p>
 
               <ul className="space-y-2 mb-5">
-                {project.highlights.slice(0, index === 0 ? 4 : 3).map((h) => (
+                {(project.highlights || []).slice(0, index === 0 ? 4 : 3).map((h) => (
                   <li key={h} className="text-slate-500 text-sm flex gap-2">
                     <span className="text-teal-400 shrink-0">▸</span>
                     {h}
@@ -74,7 +74,7 @@ export default function Projects({ projects }) {
               </ul>
 
               <div className="flex flex-wrap gap-2 mt-auto">
-                {project.technologies.map((tech) => (
+                {(project.technologies || []).map((tech) => (
                   <span
                     key={tech}
                     className="px-2.5 py-1 rounded-md bg-teal-500/10 border border-teal-500/20 text-teal-300 text-xs font-mono"
@@ -95,7 +95,7 @@ export default function Projects({ projects }) {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {others.map((project, index) => (
                 <motion.article
-                  key={project.id}
+                  key={project.id || index}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-60px' }}
@@ -106,7 +106,7 @@ export default function Projects({ projects }) {
                   <h3 className="text-lg font-bold text-white mb-2">{project.title}</h3>
                   <p className="text-slate-400 text-sm mb-4 line-clamp-2">{project.description}</p>
                   <div className="flex flex-wrap gap-1.5">
-                    {project.technologies.slice(0, 4).map((tech) => (
+                    {(project.technologies || []).slice(0, 4).map((tech) => (
                       <span
                         key={tech}
                         className="px-2 py-0.5 rounded bg-white/5 text-slate-400 text-xs font-mono"

@@ -13,20 +13,32 @@ initializeApp({
 
 const db = getFirestore();
 
-const documents = [
-  { docId: "profile", data: portfolioData.profile },
-  { docId: "skillCategories", data: { items: portfolioData.skillCategories } },
-  { docId: "projects", data: { items: portfolioData.projects } },
-  { docId: "experience", data: { items: portfolioData.experience } },
-  { docId: "education", data: { items: portfolioData.education } },
-  { docId: "certificates", data: { items: portfolioData.certificates } },
-];
-
 async function seed() {
   try {
-    for (const doc of documents) {
-      await db.collection("portfolio").doc(doc.docId).set(doc.data);
-      console.log(`✅ Uploaded: portfolio/${doc.docId}`);
+    // 1. Profile remains a single document in 'portfolio' collection
+    await db.collection("portfolio").doc("profile").set(portfolioData.profile);
+    console.log("✅ Uploaded: portfolio/profile");
+
+    // 2. Collection based items
+    const collections = [
+      { name: "skillCategories", data: portfolioData.skillCategories },
+      { name: "projects", data: portfolioData.projects },
+      { name: "experience", data: portfolioData.experience },
+      { name: "education", data: portfolioData.education },
+      { name: "certificates", data: portfolioData.certificates },
+    ];
+
+    for (const col of collections) {
+      for (const item of col.data) {
+        if (item.id) {
+          // Use item.id if available
+          await db.collection(col.name).doc(item.id).set(item);
+        } else {
+          // Otherwise add document with auto-generated ID
+          await db.collection(col.name).add(item);
+        }
+      }
+      console.log(`✅ Uploaded collection: ${col.name} (${col.data.length} items)`);
     }
 
     console.log("\n🎉 Firestore seeded successfully!");

@@ -75,6 +75,16 @@ export default function Hero({ profile }) {
                 <Sparkles size={18} />
                 Hire Me
               </a>
+              {profile.resumeUrl && (
+                <a
+                  href={profile.resumeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-teal-500/40 bg-teal-500/10 text-teal-300 font-semibold hover:bg-teal-500/20 hover:-translate-y-1 transition-all"
+                >
+                  Download Resume
+                </a>
+              )}
               <a
                 href="#projects"
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-white/15 bg-white/5 backdrop-blur-md text-white font-semibold hover:border-teal-500/50 hover:bg-teal-500/10 hover:-translate-y-1 transition-all"
