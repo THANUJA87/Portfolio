@@ -27,15 +27,23 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-teal-400 to-indigo-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-teal-300 via-indigo-300 to-purple-300 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-amber-300 via-teal-300 to-indigo-300 bg-clip-text text-transparent;
   }
 
   .glass {
     @apply bg-slate-950/70 backdrop-blur-xl border border-white/10;
   }
 
+  .glass-card {
+    @apply bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl;
+  }
+
   .card-hover {
-    @apply transition-all duration-300 hover:-translate-y-1 hover:border-teal-500/30 hover:shadow-xl hover:shadow-teal-500/5;
+    @apply transition-all duration-300 hover:-translate-y-1.5 hover:border-teal-500/40 hover:shadow-2xl hover:shadow-teal-500/10;
   }
 
   .grid-bg {
@@ -45,4 +53,47 @@
     background-size: 60px 60px;
     mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
   }
+
+  .shimmer-btn {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shimmer-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      60deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.25) 50%,
+      transparent 70%
+    );
+    transform: rotate(30deg);
+    animation: shimmer 4s infinite;
+  }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) rotate(30deg); }
+  20% { transform: translateX(100%) rotate(30deg); }
+  100% { transform: translateX(100%) rotate(30deg); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
 }
