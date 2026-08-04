@@ -51,8 +51,14 @@ export async function fetchPortfolioData() {
       profile: profileSnap.exists() ? profileSnap.data() : portfolioData.profile,
       skillCategories: parseSnapItems(skillsSnap, portfolioData.skillCategories),
       projects: parseSnapItems(projectsSnap, portfolioData.projects),
-      experience: parseSnapItems(experienceSnap, portfolioData.experience),
-      education: parseSnapItems(educationSnap, portfolioData.education),
+      experience: parseSnapItems(experienceSnap, portfolioData.experience)
+        .sort((a, b) => {
+          if (a.current) return -1;
+          if (b.current) return 1;
+          return 0;
+        }),
+        education: parseSnapItems(educationSnap, portfolioData.education)
+        .sort((a, b) => b.year - a.year),
       certificates: parseSnapItems(certificatesSnap, portfolioData.certificates),
     }
   } catch (error) {
