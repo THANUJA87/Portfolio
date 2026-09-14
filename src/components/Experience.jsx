@@ -45,11 +45,11 @@ export default function Experience({ experience }) {
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <h3 className="text-lg font-bold text-white">{item.role}</h3>
-                      {item.current && (
+                      {/* {item.current && (
                         <span className="px-2 py-0.5 rounded-full bg-teal-500/20 border border-teal-500/30 text-teal-300 text-xs font-medium">
                           Current
                         </span>
-                      )}
+                      )} */}
                     </div>
                     <p className="text-teal-400 font-medium">{item.company}</p>
                   </div>
