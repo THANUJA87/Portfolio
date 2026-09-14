@@ -173,10 +173,10 @@ export const portfolioData = {
     {
       id: 'geesesquads-jse',
       company: 'Geesesquads Software Service Pvt. Ltd.',
-      role: 'Junior Software Engineer',
-      period: 'Aug 2025 – Present',
+      role: 'Associate Software Engineer',
+      period: 'Aug 2025 – Aug 2026',
       type: 'Full-time',
-      current: true,
+      current: false,
       description:
         'Developing production-grade full-stack applications with React, NestJS, AWS serverless architecture, and Amazon Bedrock AI integrations across frontend, backend, and cloud infrastructure.',
       achievements: [

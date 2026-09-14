@@ -3,7 +3,7 @@ import { Briefcase, Code2, GraduationCap, Download } from 'lucide-react'
 import SectionHeader from './ui/SectionHeader'
 
 const stats = [
-  { icon: Briefcase, label: 'Current Role', value: 'Junior Software Engineer' },
+  { icon: Briefcase, label: 'Recent Role', value: 'Associate Software Engineer' },
   { icon: Code2, label: 'Specialization', value: 'React · NestJS · PostgreSQL · MongoDB' },
   { icon: GraduationCap, label: 'Education', value: 'BTech · CGPA 8.27' },
 ]
